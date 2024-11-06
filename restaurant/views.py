@@ -101,3 +101,7 @@ class MenuByCategoryView(ListView):
 
         context['category_count'] = Food.objects.filter(category__name=category_name).count()
         return context
+
+class Booking(View):
+    def get(self, request):
+        return render(request, 'booking.html')
