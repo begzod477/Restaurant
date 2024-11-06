@@ -4,8 +4,9 @@ from .models import Chefs, Category, Food, Review
 from django.db.models import Q
 from collections import defaultdict
 import logging
+from django.contrib import messages
 
-# Configure logging
+
 logger = logging.getLogger(__name__)
 
 class Home(View):
@@ -28,7 +29,8 @@ class Home(View):
             try:
                 rate = int(rate)
                 if rate < 1 or rate > 5:
-                    return redirect('home')  
+                    messages.error(request, "Reyting 1 dan 5 gacha bo'lishi kerak.")
+                    return redirect('home')
                 if request.user.is_authenticated:
                     s = Review.objects.create(
                         text=text,
@@ -38,13 +40,13 @@ class Home(View):
                         profession=profession,
                     )
                     s.save()
+                    messages.success(request, "Izoh muvaffaqiyatli qo'shildi!")  # Xabarni qo'shish
                 return redirect('home')
             except Exception as e:
-                logger.error(f"Error creating review: {e}")
+                messages.error(request, "Izoh qo'shishda xatolik yuz berdi.")
                 return redirect('home')
+        messages.error(request, "Barcha maydonlarni to'ldiring.")
         return redirect('home')
-
-
 class MenuView(ListView):
     model = Food
     template_name = 'menu.html'

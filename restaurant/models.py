@@ -72,4 +72,4 @@ class Review(models.Model):
         verbose_name_plural = 'Izohlar'
 
     def get_range(self):
-        return [1, 2, 3, 4, 5]
+        return range(5)

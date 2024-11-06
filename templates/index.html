@@ -345,12 +345,13 @@
                         </div>
                         <div class="d-flex pe-5">
                             {% for i in review.get_range %}
-                            {% if i < review.rating %}
-                            <i class="fas fa-star text-primary"></i>
-                            {% else %}
-                            <i class="fas fa-star"></i>
-                            {% endif %}
+                                {% if i < review.rating %}
+                                    <i class="fas fa-star text-primary"></i>
+                                {% else %}
+                                    <i class="fas fa-star"></i>
+                                {% endif %}
                             {% endfor %}
+
 
                         </div>
                     </div>
@@ -385,6 +386,17 @@
             <button type="submit" class="btn btn-primary mt-3" style="display: block; margin: 0 auto;">Save</button>
     
         </form>
+        {% if messages %}
+  <div class="container mt-3">
+    {% for message in messages %}
+      <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+        {{ message }}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+      </div>
+    {% endfor %}
+  </div>
+{% endif %}
+
     </div>
     {% endif %}
     
