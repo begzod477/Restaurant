@@ -104,4 +104,4 @@ class MenuByCategoryView(ListView):
 
 class Booking(View):
     def get(self, request):
-        return render(request, 'booking.html')
+        return render(request, 'index.html')
