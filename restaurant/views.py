@@ -30,13 +30,14 @@ class Home(View):
                 if rate < 1 or rate > 5:
                     return redirect('home')  
                 if request.user.is_authenticated:
-                    Review.objects.create(
+                    s = Review.objects.create(
                         text=text,
                         rate=rate,
                         user=request.user,
                         full_name=full_name,
                         profession=profession,
                     )
+                    s.save()
                 return redirect('home')
             except Exception as e:
                 logger.error(f"Error creating review: {e}")
