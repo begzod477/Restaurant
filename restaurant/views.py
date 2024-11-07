@@ -115,8 +115,14 @@ class Booking(View):
 
 class Detail(View):
     def get(self, request, id):
-        food = get_object_or_404(Food, id=id)
+        food = get_object_or_404(Food, id=id)  
+        reviews = Review.objects.filter(food=food) 
+        
+        print(food)
+
         context = {
-            'food': food,
+            'food': food, 
+            'reviews': reviews, 
         }
+        
         return render(request, 'food_detail.html', context)

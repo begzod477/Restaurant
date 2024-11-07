@@ -53,16 +53,16 @@ class Food(models.Model):
 
 
 class Review(models.Model):
-    text = models.CharField(max_length=75, verbose_name = 'izoh matni')
-    user = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, verbose_name='foydalanuvchi', related_name='reviews')
+    text = models.CharField(max_length=75, verbose_name='Izoh matni')
+    user = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, verbose_name='Foydalanuvchi', related_name='reviews')
     full_name = models.CharField(max_length=100, verbose_name='To\'liq ismi')
-    rating  = models.IntegerField(validators=[
-        MinValueValidator(1 , "kamida 1 ta bo'lishi kerak"),
-        MaxValueValidator(5, "eng ko'pi 5 ta bo'lishi kerak")
-    ], verbose_name='bahosi')
-    created = models.DateTimeField(auto_now_add=True, verbose_name="izoh qo'shilgan vaqti")
-    profession = models.CharField(max_length=100, null=True, verbose_name='kasbi')
-
+    rating = models.IntegerField(validators=[
+        MinValueValidator(1, "Kamida 1 ta bo'lishi kerak"),
+        MaxValueValidator(5, "Eng ko'pi 5 ta bo'lishi kerak")
+    ], verbose_name='Bahosi')
+    created = models.DateTimeField(auto_now_add=True, verbose_name="Izoh qo'shilgan vaqti")
+    profession = models.CharField(max_length=100, null=True, verbose_name='Kasbi')
+    food = models.ForeignKey(Food, on_delete=models.CASCADE, related_name='reviews', verbose_name='Taom')  
 
     def __str__(self):
         return f"{self.full_name} | {self.text[:100]}"
