@@ -40,13 +40,14 @@ class Home(View):
                         profession=profession,
                     )
                     s.save()
-                    messages.success(request, "Izoh muvaffaqiyatli qo'shildi!")  # Xabarni qo'shish
+                    messages.success(request, "Izoh muvaffaqiyatli qo'shildi!")  
                 return redirect('home')
             except Exception as e:
                 messages.error(request, "Izoh qo'shishda xatolik yuz berdi.")
                 return redirect('home')
         messages.error(request, "Barcha maydonlarni to'ldiring.")
         return redirect('home')
+    
 class MenuView(ListView):
     model = Food
     template_name = 'menu.html'
@@ -110,3 +111,12 @@ class Booking(View):
 
 
         return render(request, 'index.html', context)
+    
+class Detail(View):
+    def get(self, request, id):
+        id = request.GET.get('id')
+        food = Food.objects.get(id=id)
+        context = {
+            'food': food,
+        }
+        return render(request, 'food_detail.html', context)

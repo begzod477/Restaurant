@@ -1,0 +1,8 @@
+<div class="card" style="width: 18rem;">
+
+    {% for food in foods %}
+    <img src="{{ food.image.url }}" class="card-img-top" alt="Sunset Over the Sea"/>
+    <div class="card-body">
+      <p class="card-text">{{ food.description }}</p>
+    </div>
+  </div>
