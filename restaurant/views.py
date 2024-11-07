@@ -130,3 +130,10 @@ class FoodDetailView(DetailView):
     model = Food
     template_name = 'food_detail.html'
     context_object_name = 'food'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        food = self.get_object()  
+        reviews = Review.objects.filter(food=food) 
+        context['reviews'] = reviews  
+        return context

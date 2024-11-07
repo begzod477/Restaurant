@@ -3,7 +3,6 @@
 
 {% block hero %}
 <style>
-    /* From Uiverse.io by andrew-demchenk0 */
     .rating:not(:checked) > input {
         position: absolute;
         appearance: none;
@@ -41,7 +40,6 @@
 
 {% block search %}
 <style>
-    /* From Uiverse.io by vinodjangid07 */ 
     .InputContainer {
         width: 210px; 
         height: 50px;
@@ -72,7 +70,6 @@
 {% endblock search %}
 
 {% block content %}
-<!-- Menu Start -->
 <div class="container-xxl py-5">
     <div class="container">
         <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
@@ -118,7 +115,6 @@
                                 <a href="{% url 'food_detail' pk=food.pk %}">
                                     <img class="flex-shrink-0 img-fluid rounded" src="{{ food.image.url }}" alt="" style="width: 80px;">
                                 </a>
-                                 
                                 <div class="w-100 d-flex flex-column text-start ps-4">
                                     <h5 class="d-flex justify-content-between border-bottom pb-2">
                                         <a href="{% url 'food_detail' food.id %}"><span>{{ food.name }}</span></a>
@@ -135,9 +131,7 @@
         </div>
     </div>
 </div>
-<!-- Menu End -->
 
-<!-- Testimonial Start -->
 <div class="container-xxl py-5 wow fadeInUp" data-wow-delay="0.1s">
     <div class="container">
         <div class="text-center">
@@ -170,14 +164,10 @@
         </div>
     </div>
 </div>
-<!-- Testimonial End -->
 
-<!-- Footer Start -->
 <footer class="bg-dark text-light py-4">
     <div class="container text-center">
         <p class="mb-0">© 2024 Your Company. All Rights Reserved.</p>
     </div>
 </footer>
-<!-- Footer End -->
-
 {% endblock content %}
