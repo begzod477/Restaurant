@@ -133,7 +133,7 @@ class FoodDetailView(DetailView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        food = self.get_object()  
+        food = Food.objects.all()  
         reviews = Review.objects.filter(food=food) 
         context['reviews'] = reviews  
         return context
