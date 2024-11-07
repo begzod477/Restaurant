@@ -104,4 +104,9 @@ class MenuByCategoryView(ListView):
 
 class Booking(View):
     def get(self, request):
-        return render(request, 'index.html')
+        context = {
+            'foods': Food.objects.all(),
+        }
+
+
+        return render(request, 'index.html', context)
