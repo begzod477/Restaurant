@@ -10,9 +10,11 @@ urlpatterns = [
     path('menu/', MenuView.as_view(), name='menu'),
     path('menu/<str:category_name>/', MenuByCategoryView.as_view(), name='menu_by_category'),
     path('booking/', Booking.as_view(), name='booking' ),
-    path('food_detail/<int:id>/', Detail.as_view(), name='food_detail')
+    path('food_detail/<int:pk>/', Detail.as_view(), name='detail')
 
 
 
 
-] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
+] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+
