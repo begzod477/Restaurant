@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from django.views.generic import View, ListView
+from django.views.generic import View, ListView, DetailView
+
 from .models import Chefs, Category, Food, Review
 from django.db.models import Q
 from collections import defaultdict
@@ -115,11 +116,17 @@ class Booking(View):
 
 class Detail(View):
     def get(self, request, pk):
-        food = Food.objects.get(pk=pk)
+        food = get_object_or_404(Food, pk=pk) 
         reviews = Review.objects.filter(food=food)
         
         context = {
-            'food': food, 
+            'food': food,
             'reviews': reviews,
         }
         return render(request, 'food_detail.html', context)
+    
+
+class FoodDetailView(DetailView):
+    model = Food
+    template_name = 'food_detail.html'
+    context_object_name = 'food'

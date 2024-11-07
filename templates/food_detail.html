@@ -115,7 +115,7 @@
                         {% for food in foods %}
                         <div class="col-lg-6">
                             <div class="d-flex align-items-center">
-                                <a href="{% url 'food_detail' food.id %}">
+                                <a href="{% url 'food_detail' pk=food.pk %}">
                                     <img class="flex-shrink-0 img-fluid rounded" src="{{ food.image.url }}" alt="" style="width: 80px;">
                                 </a>
                                  
