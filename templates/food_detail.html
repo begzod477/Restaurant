@@ -1,8 +1,183 @@
-<div class="card" style="width: 18rem;">
+{% extends "base.html" %}
+{% load static %}
 
-    {% for food in foods %}
-    <img src="{{ food.image.url }}" class="card-img-top" alt="Sunset Over the Sea"/>
-    <div class="card-body">
-      <p class="card-text">{{ food.description }}</p>
+{% block hero %}
+<style>
+    /* From Uiverse.io by andrew-demchenk0 */
+    .rating:not(:checked) > input {
+        position: absolute;
+        appearance: none;
+    }
+
+    .rating:not(:checked) > label {
+        float: right;
+        cursor: pointer;
+        font-size: 30px;
+        color: #666;
+    }
+
+    .rating:not(:checked) > label:before {
+        content: '★';
+    }
+
+    .rating > input:checked + label:hover,
+    .rating > input:checked + label:hover ~ label,
+    .rating > input:checked ~ label:hover,
+    .rating > input:checked ~ label:hover ~ label,
+    .rating > label:hover ~ input:checked ~ label {
+        color: #e58e09;
+    }
+
+    .rating:not(:checked) > label:hover,
+    .rating:not(:checked) > label:hover ~ label {
+        color: #ff9e0b;
+    }
+
+    .rating > input:checked ~ label {
+        color: #ffa723;
+    }
+</style>
+{% endblock hero %}
+
+{% block search %}
+<style>
+    /* From Uiverse.io by vinodjangid07 */ 
+    .InputContainer {
+        width: 210px; 
+        height: 50px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: linear-gradient(to bottom,rgb(227, 213, 255),rgb(255, 231, 231));
+        border-radius: 30px;
+        overflow: hidden;
+        cursor: pointer;
+        box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.075);
+    }
+
+    .input {
+        width: 200px;
+        height: 40px;
+        border: none;
+        outline: none;
+        caret-color: rgb(255, 81, 0);
+        background-color: rgb(255, 255, 255);
+        border-radius: 30px;
+        padding-left: 15px;
+        letter-spacing: 0.8px;
+        color: rgb(19, 19, 19);
+        font-size: 13.4px;
+    }
+</style>
+{% endblock search %}
+
+{% block content %}
+<!-- Menu Start -->
+<div class="container-xxl py-5">
+    <div class="container">
+        <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
+            <h5 class="section-title ff-secondary text-center text-primary fw-normal">Food Menu</h5>
+            <h1 class="mb-5">Most Popular Items</h1>
+        </div>
+        <div class="tab-class text-center wow fadeInUp" data-wow-delay="0.1s">
+            <ul class="nav nav-pills d-inline-flex justify-content-center border-bottom mb-5">
+                <li class="nav-item">
+                    <a class="d-flex align-items-center text-start mx-3 ms-0 pb-3 active" data-bs-toggle="pill" href="#tab-1">
+                        <i class="fa fa-coffee fa-2x text-primary"></i>
+                        <div class="ps-3">
+                            <small class="text-body">Popular</small>
+                            <h6 class="mt-n1 mb-0">Breakfast</h6>
+                        </div>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="d-flex align-items-center text-start mx-3 pb-3" data-bs-toggle="pill" href="#tab-2">
+                        <i class="fa fa-hamburger fa-2x text-primary"></i>
+                        <div class="ps-3">
+                            <small class="text-body">Special</small>
+                            <h6 class="mt-n1 mb-0">Lunch</h6>
+                        </div>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="d-flex align-items-center text-start mx-3 me-0 pb-3" data-bs-toggle="pill" href="#tab-3">
+                        <i class="fa fa-utensils fa-2x text-primary"></i>
+                        <div class="ps-3">
+                            <small class="text-body">Lovely</small>
+                            <h6 class="mt-n1 mb-0">Dinner</h6>
+                        </div>
+                    </a>
+                </li>
+            </ul>
+            <div class="tab-content">
+                <div id="tab-1" class="tab-pane fade show p-0 active">
+                    <div class="row g-4">
+                        {% for food in foods %}
+                        <div class="col-lg-6">
+                            <div class="d-flex align-items-center">
+                                <a href="{% url 'food_detail' food.id %}">
+                                    <img class="flex-shrink-0 img-fluid rounded" src="{{ food.image.url }}" alt="" style="width: 80px;">
+                                </a>
+                                 
+                                <div class="w-100 d-flex flex-column text-start ps-4">
+                                    <h5 class="d-flex justify-content-between border-bottom pb-2">
+                                        <a href="{% url 'food_detail' food.id %}"><span>{{ food.name }}</span></a>
+                                        <span class="text-primary">${{ food.price }}</span>
+                                    </h5>
+                                    <a href="{% url 'food_detail' food.id %}"><small class="fst-italic">{{ food.description }}</small></a>
+                                </div>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>   
+                </div>
+            </div>
+        </div>
     </div>
-  </div>
+</div>
+<!-- Menu End -->
+
+<!-- Testimonial Start -->
+<div class="container-xxl py-5 wow fadeInUp" data-wow-delay="0.1s">
+    <div class="container">
+        <div class="text-center">
+            <h5 class="section-title ff-secondary text-center text-primary fw-normal">Testimonial</h5>
+            <h1 class="mb-5">Our Clients Say!!!</h1>
+        </div>
+        <div class="owl-carousel testimonial-carousel">
+            {% for review in reviews %}
+            <div class="testimonial-item bg-transparent border rounded p-4">
+                <i class="fa fa-quote-left fa-2x text-primary mb-3"></i>
+                <p>{{ review.text }}</p>
+                <div class="d-flex align-items-center">
+                    <img class="img-fluid flex-shrink-0 rounded-circle" src="img/testimonial-1.jpg" style="width: 50px; height: 50px;">
+                    <div class="ps-3">
+                        <h5 class="mb-1">{{ review.full_name }}</h5>
+                        <small>{{ review.profession }}</small> 
+                    </div>
+                    <div class="d-flex pe-5">
+                        {% for i in review.get_range %}
+                            {% if i < review.rating %}
+                                <i class="fas fa-star text-primary"></i>
+                            {% else %}
+                                <i class="fas fa-star"></i>
+                            {% endif %}
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+<!-- Testimonial End -->
+
+<!-- Footer Start -->
+<footer class="bg-dark text-light py-4">
+    <div class="container text-center">
+        <p class="mb-0">© 2024 Your Company. All Rights Reserved.</p>
+    </div>
+</footer>
+<!-- Footer End -->
+
+{% endblock content %}

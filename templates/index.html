@@ -190,13 +190,16 @@
                                 {% for food in foods %}
                                 <div class="col-lg-6">
                                     <div class="d-flex align-items-center">
-                                       <a href="{% url 'food_detail' id %}"> <img class="flex-shrink-0 img-fluid rounded" src="{{ food.image.url }}" alt="" style="width: 80px;"></a>
+                                        <a href="{% url 'food_detail' food.id %}">
+                                            <img class="flex-shrink-0 img-fluid rounded" src="{{ food.image.url }}" alt="" style="width: 80px;">
+                                        </a>
+                                        
                                         <div class="w-100 d-flex flex-column text-start ps-4">
                                             <h5 class="d-flex justify-content-between border-bottom pb-2">
-                                                <a href="{% url 'food_detail' id %}"><span>{{ food.name }}</span></a>
+                                                <a href="{% url 'food_detail' food.id %}"><span>{{ food.name }}</span></a>
                                                 <span class="text-primary">${{ food.price }}</span>
                                             </h5>
-                                            <a href="{% url 'food_detail' id %}"><small class="fst-italic">{{ food.description }}</small></a>
+                                            <a href="{% url 'food_detail' food.id %}"><small class="fst-italic">{{ food.description }}</small></a>
                                         </div>
                                     </div>
                                 </div>
