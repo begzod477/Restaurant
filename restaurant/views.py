@@ -115,8 +115,8 @@ class Booking(View):
     
 
 class Detail(View):
-    def get(self, request, pk):
-        food = get_object_or_404(Food, pk=pk) 
+    def get(self, request, slug):
+        food = get_object_or_404(Food, slug=slug) 
         reviews = Review.objects.filter(food=food)
         
         context = {

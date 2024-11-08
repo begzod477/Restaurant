@@ -13,7 +13,10 @@ urlpatterns = [
 
     path('booking/', Booking.as_view(), name='booking'),
 
-    path('food_detail/<int:pk>/', Detail.as_view(), name='food_detail'),
-    path('food_detail/<int:pk>/', FoodDetailView.as_view(), name='food_detail'),
-    ]
+    path('food_detail/<slug:slug>/', Detail.as_view(), name='food_detail'),
+    path('food_detail/<slug:slug>/', FoodDetailView.as_view(), name='food_detail'),
+    
+]  
 
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
