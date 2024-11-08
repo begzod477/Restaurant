@@ -2,7 +2,6 @@ from django.urls import path
 from .views import (Home, MenuView, MenuByCategoryView, Booking, Detail, FoodDetailView)
 from django.conf import settings
 from django.conf.urls.static import static
-from . import views
 
 urlpatterns = [
     path('', Home.as_view(), name='home'),
