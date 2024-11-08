@@ -1,19 +1,6 @@
 {% extends "base.html" %}
 
 {% block content %}
-<div class="container py-5">
-    <div class="row">
-        <div class="col-lg-6">
-            <!-- Taom rasmi -->
-            <img class="img-fluid rounded" src="{{ food.image.url }}" alt="{{ food.name }}">
-        </div>
-        <div class="col-lg-6">
-            <!-- Taom nomi va narxi -->
-            <h1>{{ food.name }}</h1>
-            <p class="text-primary">${{ food.price }}</p>
-            <!-- Taom tavsifi -->
-            <p>{{ food.description }}</p>
-        </div>
-    </div>
-</div>
+{% include 'components/_food.html' %}
+
 {% endblock content %}
