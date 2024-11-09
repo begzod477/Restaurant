@@ -86,7 +86,7 @@
                         <i class="fa fa-coffee fa-2x text-primary"></i>
                         <div class="ps-3">
                             <small class="text-body">Popular</small>
-                            <h6 class="mt-n1 mb-0">Breakfast</h6>
+                            <h6 class="mt-n1 mb-0">Nonushta</h6>
                         </div>
                     </a>
                 </li>
@@ -95,7 +95,7 @@
                         <i class="fa fa-hamburger fa-2x text-primary"></i>
                         <div class="ps-3">
                             <small class="text-body">Special</small>
-                            <h6 class="mt-n1 mb-0">Lunch</h6>
+                            <h6 class="mt-n1 mb-0">Tushlik</h6>
                         </div>
                     </a>
                 </li>
@@ -104,7 +104,7 @@
                         <i class="fa fa-utensils fa-2x text-primary"></i>
                         <div class="ps-3">
                             <small class="text-body">Lovely</small>
-                            <h6 class="mt-n1 mb-0">Dinner</h6>
+                            <h6 class="mt-n1 mb-0">Ujin</h6>
                         </div>
                     </a>
                 </li>
@@ -115,16 +115,16 @@
                         {% for food in foods %}
                         <div class="col-lg-6">
                             <div class="d-flex align-items-center">
-                                <a href="{% url 'food_detail' food.id %}">
+                                <a href="{% url 'food_detail' food.slug %}">
                                     <img class="flex-shrink-0 img-fluid rounded" src="{{ food.image.url }}" alt="" style="width: 80px;">
                                 </a>
                                 
                                 <div class="w-100 d-flex flex-column text-start ps-4">
                                     <h5 class="d-flex justify-content-between border-bottom pb-2">
-                                        <a href="{% url 'food_detail' food.id %}"><span>{{ food.name }}</span></a>
+                                        <a href="{% url 'food_detail' food.slug %}"><span>{{ food.name }}</span></a>
                                         <span class="text-primary">${{ food.price }}</span>
                                     </h5>
-                                    <a href="{% url 'food_detail' food.id %}"><small class="fst-italic">{{ food.description }}</small></a>
+                                    <a href="{% url 'food_detail' food.slug %}"><small class="fst-italic">{{ food.description }}</small></a>
                                 </div>
                             </div>
                         </div>

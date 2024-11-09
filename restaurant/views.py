@@ -127,6 +127,7 @@ class Detail(View):
     
 
 class FoodDetailView(DetailView):
+    paginate_by = 1
     model = Food
     template_name = 'food_detail.html'
     context_object_name = 'food'
