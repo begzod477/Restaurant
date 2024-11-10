@@ -6,6 +6,8 @@ from django.db.models import Q
 from collections import defaultdict
 import logging
 from django.contrib import messages
+from django.core.paginator import Paginator
+
 
 
 logger = logging.getLogger(__name__)
@@ -53,6 +55,7 @@ class MenuView(ListView):
     model = Food
     template_name = 'menu.html'
     context_object_name = 'foods'
+    paginate_by = 2  
 
     def get_queryset(self):
         queryset = super().get_queryset()
@@ -79,11 +82,11 @@ class MenuView(ListView):
         context['category_count'] = category_count
         return context
 
-
 class MenuByCategoryView(ListView):
     model = Food
     template_name = 'menu.html'
     context_object_name = 'foods'
+    paginate_by = 6  
 
     def get_queryset(self):
         category_name = self.kwargs.get('category_name')
@@ -103,7 +106,6 @@ class MenuByCategoryView(ListView):
 
         context['category_count'] = Food.objects.filter(category__name=category_name).count()
         return context
-
 class Booking(View):
     def get(self, request):
         context = {
