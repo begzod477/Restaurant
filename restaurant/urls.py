@@ -1,7 +1,9 @@
 from django.urls import path
-from .views import (Home, MenuView, MenuByCategoryView, Booking, Detail, FoodDetailView)
+from .views import (Home, MenuView, MenuByCategoryView, Booking, Detail, FoodDetailView, food_list)
 from django.conf import settings
 from django.conf.urls.static import static
+
+from . import views
 
 urlpatterns = [
     path('', Home.as_view(), name='home'),
@@ -14,6 +16,7 @@ urlpatterns = [
 
     path('food_detail/<slug:slug>/', Detail.as_view(), name='food_detail'),
     path('food_detail/<slug:slug>/', FoodDetailView.as_view(), name='food_detail'),
+    path('food-list/', views.food_list, name='food_list'),
     
 ]  
 

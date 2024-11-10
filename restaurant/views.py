@@ -81,6 +81,8 @@ class MenuView(ListView):
 
         context['category_count'] = category_count
         return context
+    
+    
 
 class MenuByCategoryView(ListView):
     model = Food
@@ -140,3 +142,12 @@ class FoodDetailView(DetailView):
         reviews = Review.objects.filter(food=food) 
         context['reviews'] = reviews
         return context
+
+
+def food_list(request):
+    foods_list = Food.objects.all()  
+    paginator = Paginator(foods_list, 2)  
+    page_number = request.GET.get('page')
+    foods = paginator.get_page(page_number)  
+
+    return render(request, 'myapp/food_list.html', {'foods': foods})
